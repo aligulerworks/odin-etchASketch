@@ -35,9 +35,14 @@ body {
 
 #canvas {
    background: rgb(243, 228, 206);
+   display: grid;
    width: 100%;
    height: 100%;
+   place-content: space-between;
+   place-items: space-between;
 
-   display: grid;
+}
 
+#canvas div {
+   border: 1px solid rgb(215, 119, 119);
 }
