@@ -13,21 +13,24 @@ const canvas = document.getElementById('canvas');
 //Create Cells to be Painted
 let cell = document.createElement('div');
 let cellCount;
+let cellSize;
 
 // Cell Filling Function
 function canvasGrid(userCellInput) {
-   let count = userCellInput;
+   let count = userCellInput*userCellInput;
    cellCount = userCellInput;
+   // hey eva (I could not apply the 'cellSize' variable to the object in the styles)
+   cellSize = `${cellCount/100}rem`;
    (userCellInput > count) ? count = userCellInput : count;
 
    for (let i = 0; i < count; i++) {
    // Put Cell into canvas
    cell = canvas.appendChild(document.createElement('div'));
    cell.classList.add('cell');
-   cell.textContent = 'durruk';
    Object.assign(cell.style, cellStyles);
    Object.assign(canvas.style, canvasStyles);
-
+   canvas.style.gridTemplateColumns = `repeat(${cellCount}, 1fr`;
+   canvas.style.gridTemplateRows = `repeat(${cellCount}, 1fr`;
 
    }
 }
@@ -39,10 +42,11 @@ function canvasGrid(userCellInput) {
 const cellStyles = {
    'display': 'grid',
    'place-items': 'center',
-   'background-color': 'lightblue',
-   'width': '60px',
-   'height': '60px',
-   'border-radius': '0.5rem',
+   'width': cellSize,
+   'height': cellSize,
+   // 'width': `${cellCount/100}rem`,
+   // 'height': `${cellCount/100}rem`,
+   // 'border-radius': '0.1rem',
    'box-sizing': 'border-box',
    'overflow': 'hidden'
    
@@ -53,8 +57,8 @@ const canvasStyles = {
    'display': 'grid',
    'width': '100%',
    'height': '100%',
-   'gap': '4px',
-   'grid-template-columns': '10fr',
+   'gap': '0',
+   'grid-template-columns': `${cellCount}`
 }
 
 //ASSIGN LISTED STYLES
@@ -72,4 +76,4 @@ Object.assign(canvas.style, canvasStyles);
 
 
 //TESTS
-canvasGrid(12);
+canvasGrid(60);

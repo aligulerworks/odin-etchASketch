@@ -40,9 +40,23 @@ body {
    height: 100%;
    place-content: space-between;
    place-items: space-between;
+   cursor: crosshair;
+
 
 }
 
 #canvas div {
-   border: 1px solid rgb(215, 119, 119);
+   /* border: 1px solid rgb(215, 119, 119); */
+}
+
+.cell {
+   background-color: lightblue;
+   transition: background 3000ms ease-out;
+
+
+}
+
+.cell:hover {
+   background-color: black;
+   transition: background 20ms ease-out;
 }
