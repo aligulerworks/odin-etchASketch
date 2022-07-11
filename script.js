@@ -1,43 +1,18 @@
 'use strict';
 
 
-
-
-//Canvas size/resolution
-// const cellCount = '1fr 1fr 1fr 1fr 1fr';
-
-
-// Variables for existing elements
 const canvas = document.getElementById('canvas');
 
-//Create Cells to be Painted
-let cell = document.createElement('div');
-let lineCount;
-let cellSize;
-
-// Cell Filling Function
-function canvasGrid(userCellInput) {
-   let totalCellcount = userCellInput*userCellInput;
-   lineCount = userCellInput;
-   cellSize = (100/lineCount);
-
-   for (let i = 0; i < totalCellcount; i++) {
-   // Put Cell into canvas
-   cell = canvas.appendChild(document.createElement('div'));
-   cell.classList.add('cell');
-   Object.assign(cell.style, cellStyles);
-   Object.assign(canvas.style, canvasStyles);
-   }
-
-   canvas.style.gridTemplateColumns = `repeat(${lineCount}, ${cellSize}vmin`;
-   canvas.style.gridTemplateRows = `repeat(${lineCount}, ${cellSize}vmin`;
-   return;
+// STYLINGS
+// Canvas Styles
+const canvasStyles = {
+   'display': 'grid',
+   'place-items': 'start',
+   'width': '100%',
+   'height': '100%',
+   'gap': '0',
 }
-
-
-
-// STYLES
-//style list of cell
+// Cell Styles
 const cellStyles = {
    'display': 'grid',
    'place-items': 'start',
@@ -47,39 +22,35 @@ const cellStyles = {
    'overflow': 'hidden'
    
 };
+// END OF STYLINGS
 
-// style list of canvas
-const canvasStyles = {
-   'display': 'grid',
-   'place-itesm': 'start',
-   'width': '100%',
-   'height': '100%',
-   'gap': '0',
+
+
+// CELL DIV CREATOR
+const cell = () => canvas.createElement('div').className = 'cell';
+
+// CELL GRID CREATOR
+const createCanvas = function(userCellCount) {
+let totalCellCount = userCellCount ** 2;
+let cellSize = (100/userCellCount);
+   for (let i = 0; i < totalCellCount; i++) {
+      cell;
+
+   }
+
+   canvas.style.gridTemplateColumns = `repeat(${userCellCount}, ${cellSize}vmin`;
+   canvas.style.gridTemplateRows = `repeat(${userCellCount}, ${cellSize}vmin`;
 }
 
-//ASSIGN LISTED STYLES
-// assign styles to canvas
+
+const eachCell = document.querySelectorAll('.cell');
+
 Object.assign(canvas.style, canvasStyles);
-//assign styles to cell
-// Object.assign(cell.style, cellStyles);
+Object.assign(eachCell.style, cellStyles);
 
 
-
-
-
-//cell size and count function
-
+//redo all above
 
 
 //TESTS
-canvasGrid(100);
-
-
-
-// POINTER OVERS'
-
-const chosenCell = document.querySelectorAll('.cell');
-
-chosenCell.onpointerover = (event) => {
-   console.log('Pointer moved in');
- };
+createCanvas(100);
